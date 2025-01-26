@@ -1,6 +1,6 @@
-import Navbar from "./components/Navbar";
-import Feed from "./components/Feed";
-import PopularSubreddits from "./components/PopularSubreddits";
+import Navbar from "./components/Navbar/Navbar";
+import Feed from "./components/Feed/Feed";
+import PopularSubreddits from "./components/PopularSubreddits/PopularSubreddits";
 
 const posts = [
   {
@@ -46,7 +46,7 @@ function App() {
         <section className="col-span-4 col-start-5">
           <Feed posts={posts} />
         </section>
-        <aside className="col-span-2 fixed right-80">
+        <aside className="fixed right-80">
           <PopularSubreddits subreddits={popularSubreddits} />
         </aside>
       </main>
