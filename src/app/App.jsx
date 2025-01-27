@@ -1,19 +1,6 @@
 import Navbar from "../components/Navbar/Navbar";
 import PostsFeed from "../features/postsFeed/PostsFeed";
-import PopularSubreddits from "../components/PopularSubreddits/PopularSubreddits";
-
-const popularSubreddits = [
-  "AskReddit",
-  "worldnews",
-  "funny",
-  "gaming",
-  "aww",
-  "pics",
-  "science",
-  "movies",
-  "todayilearned",
-  "news",
-];
+import Subreddits from "../features/subreddits/Subreddits";
 
 function App() {
   return (
@@ -28,7 +15,7 @@ function App() {
         </section>
         <aside className="col-span-3">
           <div className="sticky top-21">
-            <PopularSubreddits subreddits={popularSubreddits} />
+            <Subreddits />
           </div>
         </aside>
       </main>
