@@ -1,17 +1,47 @@
 import React from "react";
 
-const Card = ({ redditPost }) => {
+const Card = ({ post }) => {
+  const imageUrl =
+    post.preview?.images[0]?.source?.url.replace(/&amp;/g, "&") ||
+    post.thumbnail;
+
+  const getRelativeTime = (timestamp) => {
+    const now = new Date();
+    const postDate = new Date(timestamp * 1000);
+    const secondsAgo = Math.floor((now - postDate) / 1000);
+
+    const intervals = {
+      year: 31536000,
+      month: 2592000,
+      week: 604800,
+      day: 86400,
+      hour: 3600,
+      minute: 60,
+      second: 1,
+    };
+
+    for (const [unit, secondsInUnit] of Object.entries(intervals)) {
+      const interval = Math.floor(secondsAgo / secondsInUnit);
+      if (interval >= 1) {
+        return `${interval} ${unit}${interval !== 1 ? "s" : ""} ago`;
+      }
+    }
+    return "just now";
+  };
+
+  const postTime = getRelativeTime(post.created_utc);
+
   return (
     <article className="flex bg-dark p-4 rounded-lg shadow-md text-light ml-0">
       <div className="ml-5 mr-5 w-full">
         <header className="flex items-center space-x-4">
-          <h4 className="font-bold">subreddit name</h4>
-          <p className="text-gray-500">posted 30 min ago</p>
+          <h4 className="font-bold">{post.subreddit_name_prefixed}</h4>
+          <p className="text-gray-500">{`Posted ${postTime}`}</p>
         </header>
         <section>
-          <h3 className="text-xl font-semibold mt-2">Post Title</h3>
+          <h3 className="text-xl font-semibold mt-2">{post.title}</h3>
           <img
-            src="https://placehold.co/400"
+            src={imageUrl}
             alt="Post"
             className="w-full h-auto mt-2 rounded"
           />
