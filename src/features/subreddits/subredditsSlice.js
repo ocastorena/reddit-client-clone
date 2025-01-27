@@ -6,6 +6,7 @@ export const loadAllSubreddits = createAsyncThunk(
   async (thunkAPI) => {
     try {
       const subreddits = await fetchPopularSubreddits();
+      console.log(subreddits);
       return subreddits;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -16,11 +17,18 @@ export const loadAllSubreddits = createAsyncThunk(
 const subredditsSlice = createSlice({
   name: "popularSubreddits",
   initialState: {
+    currentSubreddit: {
+      display_name: "all",
+    },
     subreddits: [],
     isLoadingSubreddits: false,
     hasError: false,
   },
-  reducer: {},
+  reducers: {
+    setCurrentSubreddit: (state, action) => {
+      state.currentSubreddit = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loadAllSubreddits.pending, (state) => {
@@ -39,10 +47,15 @@ const subredditsSlice = createSlice({
   },
 });
 
+export const { setCurrentSubreddit } = subredditsSlice.actions;
+
 export const selectAllSubreddits = (state) =>
   state.popularSubreddits.subreddits;
 
 export const isLoadingSubreddits = (state) =>
   state.popularSubreddits.isLoadingSubreddits;
+
+export const selectCurrentSubreddit = (state) =>
+  state.popularSubreddits.currentSubreddit;
 
 export default subredditsSlice.reducer;

@@ -31,7 +31,7 @@ const postsFeedSlice = createSlice({
         state.isLoadingPostsFeed = false;
         state.posts = action.payload;
       })
-      .addCase(loadAllPosts.rejected, (state, action) => {
+      .addCase(loadAllPosts.rejected, (state) => {
         state.isLoadingPostsFeed = false;
         state.hasError = true;
       });
@@ -39,7 +39,6 @@ const postsFeedSlice = createSlice({
 });
 
 export const selectAllPosts = (state) => state.postsFeed.posts;
-
 export const isLoadingPostsFeed = (state) => state.postsFeed.isLoadingPostsFeed;
 
 export default postsFeedSlice.reducer;

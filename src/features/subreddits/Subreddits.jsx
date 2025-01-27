@@ -4,6 +4,7 @@ import {
   loadAllSubreddits,
   selectAllSubreddits,
   isLoadingSubreddits,
+  setCurrentSubreddit,
 } from "./subredditsSlice";
 
 const Subreddits = () => {
@@ -25,14 +26,14 @@ const Subreddits = () => {
       ) : (
         <ul className="space-y-2">
           {subreddits.map((subreddit) => (
-            <li key={subreddit.id} className="hover:underline">
-              <a
-                href={`https://www.reddit.com${subreddit.url}`}
-                target="_blank"
-                rel="noopener noreferrer"
+            <li key={subreddit.id} className="flex items-center">
+              <img className="w-6 h-6 rounded-full" src={subreddit.icon_img} />
+              <button
+                onClick={() => dispatch(setCurrentSubreddit(subreddit))}
+                className="text-left w-full p-2 rounded transition duration-200 ease-in-out transform hover:bg-gray-700 hover:scale-105 active:bg-gray-800 active:scale-95"
               >
                 {subreddit.display_name_prefixed}
-              </a>
+              </button>
             </li>
           ))}
         </ul>

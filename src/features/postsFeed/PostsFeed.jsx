@@ -6,15 +6,18 @@ import {
   selectAllPosts,
   isLoadingPostsFeed,
 } from "./postsFeedSlice";
+import { selectCurrentSubreddit } from "../subreddits/subredditsSlice";
 
 const PostsFeed = () => {
   const dispatch = useDispatch();
   const posts = useSelector(selectAllPosts);
   const isLoading = useSelector(isLoadingPostsFeed);
+  const currentSubreddit = useSelector(selectCurrentSubreddit);
+  console.log(currentSubreddit);
 
   useEffect(() => {
-    dispatch(loadAllPosts("all"));
-  }, [dispatch]);
+    dispatch(loadAllPosts(currentSubreddit.display_name));
+  }, [dispatch, currentSubreddit]);
 
   return isLoading ? (
     <div className="flex justify-center items-center">
@@ -23,7 +26,11 @@ const PostsFeed = () => {
   ) : (
     <section className="space-y-4">
       {posts.map((post, index) => (
-        <Card key={index} post={post} />
+        <Card
+          key={index}
+          post={post}
+          subredditIcon={currentSubreddit.icon_img}
+        />
       ))}
     </section>
   );
