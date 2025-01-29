@@ -19,7 +19,6 @@ function App() {
           </div>
         </aside>
       </main>
-      <footer></footer>
     </>
   );
 }

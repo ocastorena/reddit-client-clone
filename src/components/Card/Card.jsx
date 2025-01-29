@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Comments from "./Comments";
-import commentIcon from "../../assets/comments.svg";
-import "./Card.css";
+import CommentIcon from "../../assets/comments.svg?react";
+import UpVoteIcon from "../../assets/up.svg?react";
+import DownVoteIcon from "../../assets/down.svg?react";
 
 const Card = ({ post, subreddit }) => {
   const [showComments, setShowComments] = useState(false);
@@ -41,21 +42,20 @@ const Card = ({ post, subreddit }) => {
   };
 
   return (
-    <article className="flex flex-col bg-dark p-4 rounded-lg shadow-md text-light ml-0 max-w-full overflow-hidden">
+    <article className="flex flex-col bg-dark p-4 rounded-lg shadow-md text-light">
       <div className="ml-5 mr-5">
-        <header className="flex items-center space-x-4">
-          <h6 className="font-bold">{"u/" + post.author}</h6>
-          <p className="text-gray-500">{`Posted ${postTime}`}</p>
-        </header>
-        <section className="flex items-center mt-2 max-w-full overflow-hidden">
-          <div className="flex-grow max-w-full overflow-hidden">
-            <h3 className="text-lg font-semibold break-words">{post.title}</h3>
-            {!imageUrl && !thumbnailUrl && (
-              <p className="mt-2 text-gray-400 text-sm break-words">
-                {post.selftext}
-              </p>
-            )}
-          </div>
+        <section className="flex items-center mt-2">
+          <a
+            href={post.url}
+            className="text-zinc-300 leading-snug font-semibold break-words  hover:text-white"
+          >
+            {post.title}
+          </a>
+          {!imageUrl && !thumbnailUrl && (
+            <p className="mt-2 text-gray-400 text-sm break-words">
+              {post.selftext}
+            </p>
+          )}
           {!imageUrl && thumbnailUrl && (
             <img
               src={thumbnailUrl}
@@ -69,27 +69,29 @@ const Card = ({ post, subreddit }) => {
             <img
               src={imageUrl}
               alt="Post"
-              className="w-full h-auto mt-2 rounded"
+              className="w-full h-auto mt-5 rounded"
             />
           </section>
         )}
         <div className="border-t border-gray-500 mt-5"></div>
         <footer className="flex items-center space-x-4 mt-5 text-gray-500">
-          <div>votes</div>
+          <h6 className="font-bold text-sm">{"u/" + post.author}</h6>
+          <p className="text-gray-500 text-sm">{`Posted ${postTime}`}</p>
+          <button
+            onClick=""
+            className="flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none"
+          >
+            <UpVoteIcon className="w-5 h-fit fill-light" />
+            <span className="text-sm">Vote</span>
+            <DownVoteIcon className="w-5 h-fit fill-light" />
+          </button>
           <button
             onClick={handleToggleComments}
-            className="flex items-center space-x-2 py-1 px-4 shadow-md no-underline rounded-full bg-very-dark text-light font-sans font-semibold text-sm border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none mr-2"
+            className="flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none"
           >
-            <img
-              src={commentIcon}
-              alt="comments icon"
-              className="w-6 h-6 filter-white"
-            />
-            <span>{post.num_comments}</span>
+            <CommentIcon className="w-6 h-fit fill-light" />
+            <span className="text-sm">{post.num_comments}</span>
           </button>
-          <p>share</p>
-          <p>save</p>
-          <p>...</p>
         </footer>
         {showComments && (
           <Comments subredditName={subreddit.display_name} postId={post.id} />
