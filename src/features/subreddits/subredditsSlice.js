@@ -6,7 +6,6 @@ export const loadAllSubreddits = createAsyncThunk(
   async (thunkAPI) => {
     try {
       const subreddits = await fetchPopularSubreddits();
-      console.log(subreddits);
       return subreddits;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
