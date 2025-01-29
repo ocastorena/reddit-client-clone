@@ -21,3 +21,16 @@ export const fetchPopularSubreddits = async () => {
     throw error;
   }
 };
+
+export const fetchComments = async (subreddit, postId) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/r/${subreddit}/comments/${postId}.json`
+    );
+    const json = await response.json();
+    return json[1].data.children.map((child) => child.data);
+  } catch (error) {
+    console.error("Failed to fetch comments:", error);
+    throw error;
+  }
+};
