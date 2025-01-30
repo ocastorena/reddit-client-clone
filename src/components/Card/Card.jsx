@@ -3,9 +3,12 @@ import Comments from "./Comments";
 import CommentIcon from "../../assets/comments.svg?react";
 import UpVoteIcon from "../../assets/up.svg?react";
 import DownVoteIcon from "../../assets/down.svg?react";
+import { formatNumber } from "../../utils/formatNumber";
 
 const Card = ({ post, subreddit }) => {
   const [showComments, setShowComments] = useState(false);
+  const [voteCount, setVoteCount] = useState(post.ups + post.downs);
+  const [voteStatus, setVoteStatus] = useState(null);
 
   const imageUrl = post.preview?.images[0]?.source?.url.replace(/&amp;/g, "&");
   const thumbnailUrl =
@@ -39,6 +42,30 @@ const Card = ({ post, subreddit }) => {
 
   const handleToggleComments = () => {
     setShowComments((prevShowComments) => !prevShowComments);
+  };
+
+  const handleUpvote = () => {
+    if (voteStatus === "upvoted") {
+      setVoteCount((prevVoteCount) => prevVoteCount - 1);
+      setVoteStatus(null);
+    } else {
+      setVoteCount(
+        (prevVoteCount) => prevVoteCount + (voteStatus === "downvoted" ? 2 : 1)
+      );
+      setVoteStatus("upvoted");
+    }
+  };
+
+  const handleDownvote = () => {
+    if (voteStatus === "downvoted") {
+      setVoteCount((prevVoteCount) => prevVoteCount + 1);
+      setVoteStatus(null);
+    } else {
+      setVoteCount(
+        (prevVoteCount) => prevVoteCount - (voteStatus === "upvoted" ? 2 : 1)
+      );
+      setVoteStatus("downvoted");
+    }
   };
 
   return (
@@ -100,20 +127,35 @@ const Card = ({ post, subreddit }) => {
         )}
         <div className="border-t-2 border-zinc-700 mt-5"></div>
         <footer className="flex items-center space-x-4 mt-5 text-gray-500">
-          <button
-            // onClick=""
-            className="flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none"
-          >
-            <UpVoteIcon className="w-5 h-fit fill-light" />
-            <span className="text-sm">Vote</span>
-            <DownVoteIcon className="w-5 h-fit fill-light" />
-          </button>
+          <div className="flex items-center shadow-md no-underline rounded-full bg-very-dark">
+            <button
+              onClick={handleUpvote}
+              className={`flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none ${voteStatus === "upvoted" ? "text-green-500" : ""}`}
+            >
+              <UpVoteIcon
+                className={`w-5 h-fit fill-current ${voteStatus === "upvoted" ? "text-green-500" : ""}`}
+              />
+            </button>
+            <span
+              className={`text-sm px-1 ${voteStatus === "upvoted" ? "text-green-500" : voteStatus === "downvoted" ? "text-red-500" : "text-zinc-200"}`}
+            >
+              {formatNumber(voteCount)}
+            </span>
+            <button
+              onClick={handleDownvote}
+              className={`flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none ${voteStatus === "downvoted" ? "text-red-500" : ""}`}
+            >
+              <DownVoteIcon
+                className={`w-5 h-fit fill-current ${voteStatus === "downvoted" ? "text-red-500" : ""}`}
+              />
+            </button>
+          </div>
           <button
             onClick={handleToggleComments}
             className="flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none"
           >
             <CommentIcon className="w-6 h-fit fill-light" />
-            <span className="text-sm">{post.num_comments}</span>
+            <span className="text-sm">{formatNumber(post.num_comments)}</span>
           </button>
         </footer>
         {showComments && (
