@@ -30,7 +30,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="h-[87vh] overflow-y-auto bg-dark p-4 rounded-lg shadow-md text-light w-full">
+    <aside className=" bg-dark p-4 rounded-lg shadow-md text-light w-full">
       <div className="border-b-zinc-700 border-b-2 mb-4">
         <div className="flex-wrap items-baseline">
           <img

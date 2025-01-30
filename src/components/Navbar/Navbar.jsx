@@ -18,8 +18,9 @@ const Navbar = () => {
   return (
     <nav className="grid grid-cols-3 items-center">
       <div className="flex items-center">
-        <img src="src/assets/react.svg" alt="logo" className="h-8 w-8 mr-2" />
-        <span className="text-light text-xl font-bold">Reddit Clone</span>
+        <img src="src/assets/reddit.svg" alt="logo" className="h-8 w-8 mr-2" />
+        <span className="text-light text-xl font-bold">Reddit</span>
+        <span className="text-orange-400 text-xl">Lite</span>
       </div>
       <div className="flex justify-center">
         <form onSubmit={handleFormSubmit} className="w-full max-w-md">
