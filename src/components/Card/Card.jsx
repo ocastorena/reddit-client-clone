@@ -66,7 +66,7 @@ const Card = ({ post, subreddit }) => {
         )}
         {!imageUrl && thumbnailUrl && (
           <section className="flex mt-2 max-w-full items-center">
-            <h2 className="mt-2 mb-2">
+            <h2 className="my-2 mr-2">
               <a
                 href={post.url}
                 className="text-zinc-300 text-lg font-semibold break-words hover:text-white"

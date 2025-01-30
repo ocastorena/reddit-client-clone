@@ -12,8 +12,6 @@ const Sidebar = () => {
   const subredditDetails = useSelector(selectSubredditDetails);
   const dispatch = useDispatch();
 
-  console.log(subredditDetails);
-
   useEffect(() => {
     if (Object.keys(subreddit).length > 0) {
       dispatch(loadCurrentSubredditDetails(subreddit.display_name));
