@@ -101,7 +101,7 @@ const Card = ({ post, subreddit }) => {
         <div className="border-t-2 border-zinc-700 mt-5"></div>
         <footer className="flex items-center space-x-4 mt-5 text-gray-500">
           <button
-            onClick=""
+            // onClick=""
             className="flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none"
           >
             <UpVoteIcon className="w-5 h-fit fill-light" />
