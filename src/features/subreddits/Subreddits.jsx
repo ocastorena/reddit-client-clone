@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  loadAllSubreddits,
+  loadSubreddits,
   selectAllSubreddits,
   isLoadingSubreddits,
   setCurrentSubreddit,
@@ -11,34 +11,14 @@ const Subreddits = () => {
   const dispatch = useDispatch();
   const subreddits = useSelector(selectAllSubreddits);
   const isLoading = useSelector(isLoadingSubreddits);
-  const subredditsRef = useRef(null);
 
   useEffect(() => {
-    dispatch(loadAllSubreddits());
-  }, [dispatch]);
-
-  useEffect(() => {
-    const handleWheel = (event) => {
-      if (
-        subredditsRef.current &&
-        subredditsRef.current.contains(event.target)
-      ) {
-        event.preventDefault();
-        subredditsRef.current.scrollTop += event.deltaY;
-      }
-    };
-
-    window.addEventListener("wheel", handleWheel, { passive: false });
-
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-    };
+    dispatch(loadSubreddits());
   }, []);
 
   return (
     <aside
-      ref={subredditsRef}
-      className="h-[87vh] overflow-y-auto bg-dark p-4 rounded-lg shadow-md text-light w-fit"
+      className="h-[87vh] overflow-y-auto bg-dark p-4 rounded-lg shadow-md text-light"
     >
       <h2 className="text-xl font-bold mb-4">Popular Subreddits</h2>
       {isLoading ? (

@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar/Navbar";
 import PostsFeed from "../features/postsFeed/PostsFeed";
 import Subreddits from "../features/subreddits/Subreddits";
+import Sidebar from "../components/Sidebar/Sidebar";
 
 function App() {
   return (
@@ -9,8 +10,12 @@ function App() {
         <Navbar />
       </header>
       <main className="grid grid-cols-4 gap-4 p-5 mt-16">
-        <aside className="col-span-1"></aside>
-        <section className="col-span-2 grid justify-center">
+        <aside className="col-span-1">
+          <div className="sticky top-21">
+            <Sidebar />
+          </div>
+        </aside>
+        <section className="col-span-2 grid justify-center ">
           <PostsFeed />
         </section>
         <aside className="col-span-1">
