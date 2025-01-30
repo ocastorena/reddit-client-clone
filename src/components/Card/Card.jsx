@@ -133,7 +133,7 @@ const Card = ({ post, subreddit }) => {
               className={`flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none ${voteStatus === "upvoted" ? "text-green-500" : ""}`}
             >
               <UpVoteIcon
-                className={`w-[1.5vh] h-fit fill-current ${voteStatus === "upvoted" ? "text-green-500" : ""}`}
+                className={`w-[1.5vh] h-[1.5vh] fill-current ${voteStatus === "upvoted" ? "text-green-500" : ""}`}
               />
             </button>
             <span
@@ -146,7 +146,7 @@ const Card = ({ post, subreddit }) => {
               className={`flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none ${voteStatus === "downvoted" ? "text-red-500" : ""}`}
             >
               <DownVoteIcon
-                className={`w-[1.5vh] h-fit fill-current ${voteStatus === "downvoted" ? "text-red-500" : ""}`}
+                className={`w-[1.5vh] h-[1.5vh] fill-current ${voteStatus === "downvoted" ? "text-red-500" : ""}`}
               />
             </button>
           </div>
