@@ -40,11 +40,14 @@ const Comments = ({ subredditName, postId }) => {
   };
 
   return (
-    <section className="max-w-full overflow-hidden">
+    <section>
       {isLoading ? (
         <div>
           {[...Array(3)].map((_, index) => (
-            <div key={index} className="p-2 border-b border-gray-200">
+            <div
+              key={index}
+              className="p-2 border-b-2 border-zinc-700 animate-pulse"
+            >
               <div className="h-4 bg-gray-300 rounded w-3/4 mb-2"></div>
               <div className="h-4 bg-gray-300 rounded w-1/2"></div>
             </div>
@@ -52,21 +55,18 @@ const Comments = ({ subredditName, postId }) => {
         </div>
       ) : comments.length > 0 ? (
         comments.map((comment) => (
-          <article
-            key={comment.id}
-            className="p-2 border-b border-gray-500 max-w-full overflow-hidden"
-          >
+          <article key={comment.id} className="p-6 border-b-2 border-zinc-700">
             <header className="flex items-center space-x-2 mb-1">
-              <span className="text-xs text-gray-400">u/{comment.author}</span>
-              <time className="text-xs text-gray-400">
+              <span className="text-xs text-zinc-400">u/{comment.author}</span>
+              <time className="text-xs text-zinc-400">
                 {getRelativeTime(comment.created_utc)}
               </time>
             </header>
-            <p className="text-sm text-light break-words">{comment.body}</p>
+            <p className="text-sm text-zinc-200 break-words">{comment.body}</p>
           </article>
         ))
       ) : (
-        <p className="text-gray-500">No comments available.</p>
+        <p className="text-gray-500">No comments available</p>
       )}
     </section>
   );

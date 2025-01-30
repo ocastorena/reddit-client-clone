@@ -17,7 +17,7 @@ const Subreddits = () => {
   }, [dispatch]);
 
   return (
-    <aside className="bg-dark p-4 rounded-lg shadow-md text-light w-full">
+    <aside className="h-[87vh] overflow-y-auto bg-dark p-4 rounded-lg shadow-md text-light w-fit">
       <h2 className="text-xl font-bold mb-4">Popular Subreddits</h2>
       {isLoading ? (
         <div className="flex justify-center items-center">
@@ -27,7 +27,14 @@ const Subreddits = () => {
         <ul className="space-y-2">
           {subreddits.map((subreddit) => (
             <li key={subreddit.id} className="flex items-center">
-              <img className="w-6 h-6 rounded-full" src={subreddit.icon_img} />
+              <img
+                className="w-6 h-6 rounded-full bg-zinc-100"
+                src={
+                  subreddit.icon_img
+                    ? subreddit.icon_img
+                    : "/src/assets/letter-r.png"
+                }
+              />
               <button
                 onClick={() => dispatch(setCurrentSubreddit(subreddit))}
                 className="text-left w-full p-2 rounded transition duration-200 ease-in-out transform hover:bg-gray-700 hover:scale-105 active:bg-gray-800 active:scale-95"

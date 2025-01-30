@@ -42,30 +42,55 @@ const Card = ({ post, subreddit }) => {
   };
 
   return (
-    <article className="flex flex-col bg-dark p-4 rounded-lg shadow-md text-light">
+    <article className="flex flex-col bg-dark p-4 rounded-lg shadow-md text-light max-w-xl">
       <div className="ml-5 mr-5">
-        <section className="flex items-center mt-2">
-          <a
-            href={post.url}
-            className="text-zinc-300 leading-snug font-semibold break-words  hover:text-white"
-          >
-            {post.title}
-          </a>
-          {!imageUrl && !thumbnailUrl && (
+        <header className="flex items-center space-x-2">
+          <h6>{"u/" + post.author}</h6>
+          <span className="text-zinc-500">•</span>
+          <p className="text-zinc-500">{`Posted ${postTime}`}</p>
+        </header>
+        {!imageUrl && !thumbnailUrl && (
+          <div>
+            <h2 className="mt-2 mb-2">
+              <a
+                href={post.url}
+                className="text-zinc-300 text-lg font-semibold break-words hover:text-white"
+              >
+                {post.title}
+              </a>
+            </h2>
             <p className="mt-2 text-gray-400 text-sm break-words">
               {post.selftext}
             </p>
-          )}
-          {!imageUrl && thumbnailUrl && (
+          </div>
+        )}
+        {!imageUrl && thumbnailUrl && (
+          <section className="flex mt-2 max-w-full items-center">
+            <h2 className="mt-2 mb-2">
+              <a
+                href={post.url}
+                className="text-zinc-300 text-lg font-semibold break-words hover:text-white"
+              >
+                {post.title}
+              </a>
+            </h2>
             <img
               src={thumbnailUrl}
               alt="Thumbnail"
-              className="w-20 h-20 ml-4 rounded"
+              className="w-20 h-20 ml-auto rounded"
             />
-          )}
-        </section>
+          </section>
+        )}
         {imageUrl && (
           <section className="max-w-full overflow-hidden">
+            <h2 className="mt-2 mb-2">
+              <a
+                href={post.url}
+                className="text-zinc-300 text-lg font-semibold break-words hover:text-white"
+              >
+                {post.title}
+              </a>
+            </h2>
             <img
               src={imageUrl}
               alt="Post"
@@ -73,10 +98,8 @@ const Card = ({ post, subreddit }) => {
             />
           </section>
         )}
-        <div className="border-t border-gray-500 mt-5"></div>
+        <div className="border-t-2 border-zinc-700 mt-5"></div>
         <footer className="flex items-center space-x-4 mt-5 text-gray-500">
-          <h6 className="font-bold text-sm">{"u/" + post.author}</h6>
-          <p className="text-gray-500 text-sm">{`Posted ${postTime}`}</p>
           <button
             onClick=""
             className="flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none"
