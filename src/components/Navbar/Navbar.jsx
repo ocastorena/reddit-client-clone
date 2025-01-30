@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setFilteredPosts } from "../../features/postsFeed/postsFeedSlice";
+import MenuIcon from "../../assets/comments.svg?react";
+import Sidebar from "../Sidebar/Sidebar";
+import Subreddits from "../../features/subreddits/Subreddits";
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
@@ -15,26 +19,42 @@ const Navbar = () => {
     dispatch(setFilteredPosts(searchTerm));
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <nav className="grid grid-cols-3 items-center">
-      <div className="flex items-center">
-        <img src="src/assets/reddit.svg" alt="logo" className="h-8 w-8 mr-2" />
-        <span className="text-light text-xl font-bold">Reddit</span>
-        <span className="text-orange-400 text-xl">Lite</span>
-      </div>
-      <div className="flex justify-center">
-        <form onSubmit={handleFormSubmit} className="w-full max-w-md">
-          <input
-            type="text"
-            placeholder="Search Reddit"
-            onChange={handleInputChange}
-            className="w-full p-2 rounded bg-light-dark text-light placeholder-light"
+    <nav className="bg-dark">
+      <div className="flex justify-between md:grid md:grid-cols-3 items-center">
+        <div className="flex items-center">
+          <img
+            src="src/assets/reddit.svg"
+            alt="logo"
+            className="h-8 w-8 mr-2"
           />
-        </form>
+          <span className="text-light text-[2vh] font-bold">Reddit</span>
+          <span className="text-orange-400 text-[2vh]">Lite</span>
+        </div>
+        <div className="hidden md:flex justify-center">
+          <form onSubmit={handleFormSubmit} className="w-full">
+            <input
+              type="text"
+              placeholder="Search Reddit"
+              onChange={handleInputChange}
+              className="w-full p-2 rounded bg-light-dark text-zinc-100 placeholder-zinc-100 text-[1.5vh]"
+            />
+          </form>
+        </div>
+        <button className="md:hidden flex items-center" onClick={toggleMenu}>
+          <MenuIcon className="w-10 h-10 fill-zinc-300" />
+        </button>
       </div>
-      <div className="flex justify-end">
-        {/* Add any additional elements here, like user profile or settings icon */}
-      </div>
+      {isMenuOpen && (
+        <div className="md:hidden mt-4 bg-dark p-4 rounded-lg shadow-md">
+          <Sidebar />
+          <Subreddits />
+        </div>
+      )}
     </nav>
   );
 };

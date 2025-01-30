@@ -72,21 +72,21 @@ const Card = ({ post, subreddit }) => {
     <article className="flex flex-col bg-dark p-4 rounded-lg shadow-md text-light max-w-xl">
       <div className="ml-5 mr-5">
         <header className="flex items-center space-x-2">
-          <h6>{"u/" + post.author}</h6>
+          <h6 className="md:text-[1.1vh] text-xs">{"u/" + post.author}</h6>
           <span className="text-zinc-500">•</span>
-          <p className="text-zinc-500">{`Posted ${postTime}`}</p>
+          <p className="md:text-[1.1vh] text-xs leading-none text-zinc-500">{`Posted ${postTime}`}</p>
         </header>
         {!imageUrl && !thumbnailUrl && (
           <div>
             <h2 className="mt-2 mb-2">
               <a
                 href={post.url}
-                className="text-zinc-300 text-lg font-semibold break-words hover:text-white"
+                className="text-zinc-300 md:text-[1.4vh] text-base font-semibold break-words hover:text-white"
               >
                 {post.title}
               </a>
             </h2>
-            <p className="mt-2 text-gray-400 text-sm break-words">
+            <p className="mt-2 text-gray-400 md:text-[1.2vh] text-sm break-words">
               {post.selftext}
             </p>
           </div>
@@ -96,7 +96,7 @@ const Card = ({ post, subreddit }) => {
             <h2 className="my-2 mr-2">
               <a
                 href={post.url}
-                className="text-zinc-300 text-lg font-semibold break-words hover:text-white"
+                className="text-zinc-300 md:text-[1.4vh] text-base font-semibold break-words hover:text-white"
               >
                 {post.title}
               </a>
@@ -104,7 +104,7 @@ const Card = ({ post, subreddit }) => {
             <img
               src={thumbnailUrl}
               alt="Thumbnail"
-              className="w-20 h-20 ml-auto rounded"
+              className="w-[6vh] h-[6vh] ml-auto rounded"
             />
           </section>
         )}
@@ -113,7 +113,7 @@ const Card = ({ post, subreddit }) => {
             <h2 className="mt-2 mb-2">
               <a
                 href={post.url}
-                className="text-zinc-300 text-lg font-semibold break-words hover:text-white"
+                className="text-zinc-300 md:text-lg text-base font-semibold break-words hover:text-white"
               >
                 {post.title}
               </a>
@@ -133,11 +133,11 @@ const Card = ({ post, subreddit }) => {
               className={`flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none ${voteStatus === "upvoted" ? "text-green-500" : ""}`}
             >
               <UpVoteIcon
-                className={`w-5 h-fit fill-current ${voteStatus === "upvoted" ? "text-green-500" : ""}`}
+                className={`w-[1.5vh] h-fit fill-current ${voteStatus === "upvoted" ? "text-green-500" : ""}`}
               />
             </button>
             <span
-              className={`text-sm px-1 ${voteStatus === "upvoted" ? "text-green-500" : voteStatus === "downvoted" ? "text-red-500" : "text-zinc-200"}`}
+              className={`text-[1.2vh] px-1 ${voteStatus === "upvoted" ? "text-green-500" : voteStatus === "downvoted" ? "text-red-500" : "text-zinc-200"}`}
             >
               {formatNumber(voteCount)}
             </span>
@@ -146,7 +146,7 @@ const Card = ({ post, subreddit }) => {
               className={`flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none ${voteStatus === "downvoted" ? "text-red-500" : ""}`}
             >
               <DownVoteIcon
-                className={`w-5 h-fit fill-current ${voteStatus === "downvoted" ? "text-red-500" : ""}`}
+                className={`w-[1.5vh] h-fit fill-current ${voteStatus === "downvoted" ? "text-red-500" : ""}`}
               />
             </button>
           </div>
@@ -154,8 +154,10 @@ const Card = ({ post, subreddit }) => {
             onClick={handleToggleComments}
             className="flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none"
           >
-            <CommentIcon className="w-6 h-fit fill-light" />
-            <span className="text-sm">{formatNumber(post.num_comments)}</span>
+            <CommentIcon className="w-[2vh] h-fit fill-light" />
+            <span className="text-[1.2vh]">
+              {formatNumber(post.num_comments)}
+            </span>
           </button>
         </footer>
         {showComments && (
