@@ -1,6 +1,6 @@
-# Reddit Client Clone
+# Reddit Lite
 
-Welcome to the Reddit Client Clone project! This project is a simplified clone of the popular social media platform, Reddit.
+Welcome to the Reddit Lite project! This project is a simplified version of the popular social media platform, Reddit.
 
 ## Table of Contents
 
@@ -38,11 +38,11 @@ To get a local copy of the project up and running, follow these steps:
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/reddit-client-clone.git
+   git clone https://github.com/yourusername/reddit-lite.git
    ```
 2. Navigate to the project directory:
    ```sh
-   cd reddit-client-clone
+   cd reddit-lite
    ```
 3. Install the dependencies:
    ```sh
