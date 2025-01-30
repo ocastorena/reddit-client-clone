@@ -154,8 +154,8 @@ const Card = ({ post, subreddit }) => {
             onClick={handleToggleComments}
             className="flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none"
           >
-            <CommentIcon className="w-[2vh] h-fit fill-light" />
-            <span className="text-[1.2vh]">
+            <CommentIcon className="w-[1.7vh] h-[1.7vh] fill-light" />
+            <span className="text-[1.1vh]">
               {formatNumber(post.num_comments)}
             </span>
           </button>
