@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setFilteredPosts } from "../../features/postsFeed/postsFeedSlice";
-import MenuIcon from "../../assets/comments.svg?react";
+// Components
 import Sidebar from "../Sidebar/Sidebar";
 import Subreddits from "../../features/subreddits/Subreddits";
+// SVGs
+import MenuIcon from "../../assets/comments.svg?react";
+import RedditIcon from "../../assets/reddit.svg";
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -27,11 +30,7 @@ const Navbar = () => {
     <nav className="bg-dark">
       <div className="flex justify-between md:grid md:grid-cols-3 items-center">
         <div className="flex items-center">
-          <img
-            src="src/assets/reddit.svg"
-            alt="logo"
-            className="h-8 w-8 mr-2"
-          />
+          <img src={RedditIcon} alt="reddit-lite" className="h-8 w-8 mr-2" />
           <span className="text-light text-[2vh] font-bold">Reddit</span>
           <span className="text-orange-400 text-[2vh]">Lite</span>
         </div>
