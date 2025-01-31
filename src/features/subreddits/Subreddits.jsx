@@ -7,6 +7,7 @@ import {
   setCurrentSubreddit,
   selectCurrentSubreddit,
 } from "./subredditsSlice";
+import defaultSubredditUrl from "../../assets/letter-r.png";
 
 const Subreddits = () => {
   const dispatch = useDispatch();
@@ -21,8 +22,10 @@ const Subreddits = () => {
   }, []);
 
   return (
-    <aside className="md:h-[90vh] h-[63vh]
-     overflow-y-auto bg-dark p-4 rounded-lg shadow-md text-light">
+    <aside
+      className="md:h-[90vh] h-[63vh]
+     overflow-y-auto bg-dark p-4 rounded-lg shadow-md text-light"
+    >
       <h2 className="text-[1.75vh] font-bold mb-4">Popular Subreddits</h2>
       {isLoading ? (
         <div className="flex justify-center items-center">
@@ -35,9 +38,7 @@ const Subreddits = () => {
               <img
                 className="w-6 h-6 rounded-full bg-zinc-100"
                 src={
-                  subreddit.icon_img
-                    ? subreddit.icon_img
-                    : "/src/assets/letter-r.png"
+                  subreddit.icon_img ? subreddit.icon_img : defaultSubredditUrl
                 }
               />
               <button

@@ -6,6 +6,7 @@ import {
   selectSubredditDetails,
 } from "../../features/subreddits/subredditsSlice";
 import { formatNumber } from "../../utils/formatNumber";
+import defaultSubredditUrl from "../../assets/letter-r.png";
 
 const Sidebar = () => {
   const subreddit = useSelector(selectCurrentSubreddit);
@@ -35,7 +36,7 @@ const Sidebar = () => {
             src={
               subredditDetails.icon_img
                 ? subredditDetails.icon_img
-                : "/src/assets/letter-r.png"
+                : defaultSubredditUrl
             }
             alt={`${subreddit.display_name_prefixed} icon`}
             className="w-16 h-16 rounded-full mr-2 bg-zinc-100"
