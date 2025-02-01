@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar/Navbar";
+import Header from "../components/Navbar/Header";
 import PostsFeed from "../features/postsFeed/PostsFeed";
 import Subreddits from "../features/subreddits/Subreddits";
 import Sidebar from "../components/Sidebar/Sidebar";
@@ -6,24 +6,19 @@ import Sidebar from "../components/Sidebar/Sidebar";
 function App() {
   return (
     <>
-      <header className="bg-dark p-4 fixed top-0 left-0 right-0 z-10">
-        <Navbar />
-      </header>
-      <main className="grid grid-cols-4 gap-4 p-5 mt-[6vh]">
-        <aside className="hidden md:block col-span-1">
-          <div className="sticky">
-            <Sidebar />
-          </div>
+      <Header />
+      <main className="grid grid-cols-4 gap-4 px-4 pt-20 pb-20 w-full h-screen">
+        <aside className="hidden sm:block col-span-1 bg-zinc-900 rounded-lg p-4 h-fit">
+          <Sidebar />
         </aside>
-        <section className="col-span-4 md:col-span-2 m-auto overflow-auto h-[90vh]">
+        <section className="col-span-4 sm:col-span-2 flex flex-col items-center rounded-lg w-full h-full overflow-y-auto">
           <PostsFeed />
         </section>
-        <aside className="hidden md:block col-span-1">
-          <div className="sticky">
-            <Subreddits />
-          </div>
+        <aside className="hidden sm:flex col-span-1 flex-col overflow-y-auto rounded-lg bg-zinc-900">
+          <Subreddits />
         </aside>
       </main>
+      {/* <footer className="bg-amber-400 w-full h-16 sticky bottom-0"></footer> */}
     </>
   );
 }

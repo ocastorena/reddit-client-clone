@@ -69,101 +69,99 @@ const Card = ({ post, subreddit }) => {
   };
 
   return (
-    <article className="flex flex-col bg-dark p-4 rounded-lg shadow-md text-light max-w-xl">
-      <div className="ml-5 mr-5">
-        <header className="flex items-center space-x-2">
-          <h6 className="md:text-[1.1vh] text-xs">{"u/" + post.author}</h6>
-          <span className="text-zinc-500">•</span>
-          <p className="md:text-[1.1vh] text-xs leading-none text-zinc-500">{`Posted ${postTime}`}</p>
-        </header>
-        {!imageUrl && !thumbnailUrl && (
-          <div>
-            <h2 className="mt-2 mb-2">
-              <a
-                href={post.url}
-                className="text-zinc-300 md:text-[1.4vh] text-base font-semibold break-words hover:text-white"
-              >
-                {post.title}
-              </a>
-            </h2>
-            <p className="mt-2 text-gray-400 md:text-[1.2vh] text-sm break-words">
-              {post.selftext}
-            </p>
-          </div>
-        )}
-        {!imageUrl && thumbnailUrl && (
-          <section className="flex mt-2 max-w-full items-center">
-            <h2 className="my-2 mr-2">
-              <a
-                href={post.url}
-                className="text-zinc-300 md:text-[1.4vh] text-base font-semibold break-words hover:text-white"
-              >
-                {post.title}
-              </a>
-            </h2>
-            <img
-              src={thumbnailUrl}
-              alt="Thumbnail"
-              className="w-[6vh] h-[6vh] ml-auto rounded"
-            />
-          </section>
-        )}
-        {imageUrl && (
-          <section className="max-w-full overflow-hidden">
-            <h2 className="mt-2 mb-2">
-              <a
-                href={post.url}
-                className="text-zinc-300 md:text-lg text-base font-semibold break-words hover:text-white"
-              >
-                {post.title}
-              </a>
-            </h2>
-            <img
-              src={imageUrl}
-              alt="Post"
-              className="w-full h-auto mt-5 rounded"
-            />
-          </section>
-        )}
-        <div className="border-t-2 border-zinc-700 mt-5"></div>
-        <footer className="flex items-center space-x-4 mt-5 text-gray-500">
-          <div className="flex items-center shadow-md no-underline rounded-full bg-very-dark">
-            <button
-              onClick={handleUpvote}
-              className={`flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none ${voteStatus === "upvoted" ? "text-green-500" : ""}`}
+    <article className="flex flex-col rounded-lg shadow-md text-light bg-zinc-900 w-full mb-4 px-4 py-2">
+      <header className="flex items-center space-x-2">
+        <h6 className="text-xs">{"u/" + post.author}</h6>
+        <span className="text-zinc-500">•</span>
+        <p className="text-xs leading-none text-zinc-500">{`Posted ${postTime}`}</p>
+      </header>
+      {!imageUrl && !thumbnailUrl && (
+        <div>
+          <h2 className="mt-2 mb-2">
+            <a
+              href={post.url}
+              className="text-zinc-300 text-base font-semibold break-words hover:text-white"
             >
-              <UpVoteIcon
-                className={`w-[1.5vh] h-[1.5vh] fill-current ${voteStatus === "upvoted" ? "text-green-500" : ""}`}
-              />
-            </button>
-            <span
-              className={`text-[1.2vh] px-1 ${voteStatus === "upvoted" ? "text-green-500" : voteStatus === "downvoted" ? "text-red-500" : "text-zinc-200"}`}
+              {post.title}
+            </a>
+          </h2>
+          <p className="mt-2 text-gray-400 text-sm break-words">
+            {post.selftext}
+          </p>
+        </div>
+      )}
+      {!imageUrl && thumbnailUrl && (
+        <section className="flex mt-2 max-w-full items-center">
+          <h2 className="my-2 mr-2">
+            <a
+              href={post.url}
+              className="text-zinc-300 text-base font-semibold break-words hover:text-white"
             >
-              {formatNumber(voteCount)}
-            </span>
-            <button
-              onClick={handleDownvote}
-              className={`flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none ${voteStatus === "downvoted" ? "text-red-500" : ""}`}
+              {post.title}
+            </a>
+          </h2>
+          <img
+            src={thumbnailUrl}
+            alt="Thumbnail"
+            className="w-6 h-6 ml-auto rounded"
+          />
+        </section>
+      )}
+      {imageUrl && (
+        <section className="max-w-full overflow-hidden">
+          <h2 className="mt-2 mb-2">
+            <a
+              href={post.url}
+              className="text-zinc-300 md:text-lg text-base font-semibold break-words hover:text-white"
             >
-              <DownVoteIcon
-                className={`w-[1.5vh] h-[1.5vh] fill-current ${voteStatus === "downvoted" ? "text-red-500" : ""}`}
-              />
-            </button>
-          </div>
+              {post.title}
+            </a>
+          </h2>
+          <img
+            src={imageUrl}
+            alt="Post"
+            className="w-full h-auto mt-5 rounded"
+          />
+        </section>
+      )}
+      <div className="border-t-2 border-zinc-700 mt-5"></div>
+      <footer className="flex items-center space-x-4 mt-5 text-gray-500">
+        <div className="flex items-center shadow-md no-underline rounded-full bg-very-dark">
           <button
-            onClick={handleToggleComments}
-            className="flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none"
+            onClick={handleUpvote}
+            className={`flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none ${voteStatus === "upvoted" ? "text-green-500" : ""}`}
           >
-            <CommentIcon className="w-[1.7vh] h-[1.7vh] fill-light" />
-            <span className="text-[1.1vh]">
-              {formatNumber(post.num_comments)}
-            </span>
+            <UpVoteIcon
+              className={`w-5 h-5 fill-current ${voteStatus === "upvoted" ? "text-green-500" : ""}`}
+            />
           </button>
-        </footer>
-        {showComments && (
-          <Comments subredditName={subreddit.display_name} postId={post.id} />
-        )}
-      </div>
+          <span
+            className={`text-sm px-1 ${voteStatus === "upvoted" ? "text-green-500" : voteStatus === "downvoted" ? "text-red-500" : "text-zinc-200"}`}
+          >
+            {formatNumber(voteCount)}
+          </span>
+          <button
+            onClick={handleDownvote}
+            className={`flex items-center space-x-2 py-1 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none ${voteStatus === "downvoted" ? "text-red-500" : ""}`}
+          >
+            <DownVoteIcon
+              className={`w-5 h-5 fill-current ${voteStatus === "downvoted" ? "text-red-500" : ""}`}
+            />
+          </button>
+        </div>
+        <button
+          onClick={handleToggleComments}
+          className="flex items-center space-x-2 px-2 shadow-md no-underline rounded-full bg-very-dark text-light border-blue btn-primary hover:bg-gray-700 focus:outline-none active:shadow-none"
+        >
+          <CommentIcon className="w-7 h-7 fill-light" />
+          <span className="text-sm px-1">
+            {formatNumber(post.num_comments)}
+          </span>
+        </button>
+      </footer>
+      {showComments && (
+        <Comments subredditName={subreddit.display_name} postId={post.id} />
+      )}
     </article>
   );
 };
