@@ -37,11 +37,11 @@ const PostsFeed = () => {
   }
 
   return (
-    <section className="space-y-4 top-[7%]">
+    <>
       {posts.map((post, index) => (
         <Card key={index} post={post} subreddit={currentSubreddit} />
       ))}
-    </section>
+    </>
   );
 };
 
