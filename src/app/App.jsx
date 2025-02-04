@@ -8,13 +8,13 @@ function App() {
     <>
       <Header />
       <main className="grid grid-cols-4 gap-4 px-4 pt-20 pb-20 w-full h-screen">
-        <aside className="hidden sm:block col-span-1 bg-zinc-900 rounded-lg p-4 h-fit">
+        <aside className="hidden sm:block col-span-1 bg-zinc-900 rounded-lg p-4 h-fit sm:min-w-46">
           <Sidebar />
         </aside>
-        <section className="col-span-4 sm:col-span-2 flex flex-col items-center rounded-lg w-full h-full overflow-y-auto">
+        <section className="col-span-4 sm:col-span-2 flex flex-col items-center rounded-lg w-full h-full overflow-y-auto scrollbar-hide">
           <PostsFeed />
         </section>
-        <aside className="hidden sm:flex col-span-1 flex-col overflow-y-auto rounded-lg bg-zinc-900">
+        <aside className="hidden sm:flex col-span-1 flex-col overflow-y-auto rounded-lg bg-zinc-900 sm:min-w-46">
           <Subreddits />
         </aside>
       </main>

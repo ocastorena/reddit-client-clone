@@ -31,7 +31,7 @@ const Sidebar = () => {
   return (
     <>
       <div className="border-b-zinc-700 border-b-2 mb-4">
-        <div className="flex items-baseline">
+        <div className="flex flex-wrap overflow-hidden items-baseline">
           <img
             src={
               subredditDetails.icon_img
@@ -41,7 +41,7 @@ const Sidebar = () => {
             alt={`${subreddit.display_name_prefixed} icon`}
             className="w-16 h-16 rounded-full mr-2 bg-zinc-100"
           />
-          <h2 className="text-lg text-zinc-100 font-bold break-words">
+          <h2 className="text-lg text-zinc-100 font-bold">
             {subredditDetails.display_name_prefixed}
           </h2>
         </div>

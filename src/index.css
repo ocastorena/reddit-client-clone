@@ -5,4 +5,16 @@
   --color-dark: #282828;
   --color-light-dark: #3f3f3f;
   --color-light: #d9d9d9;
+  --breakpoint-sm: 52rem;
+}
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

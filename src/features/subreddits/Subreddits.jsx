@@ -31,12 +31,12 @@ const Subreddits = () => {
           <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
         </div>
       ) : (
-        <ul className="overflow-y-auto">
+        <ul className="overflow-y-auto scrollbar-hide w-full">
           {subreddits.map((subreddit) => (
             <li key={subreddit.id}>
               <button
                 onClick={() => dispatch(setCurrentSubreddit(subreddit))}
-                className="flex items-center text-zinc-300 text-sm text-left w-full break-words p-2 rounded transition duration-200 ease-in-out transform hover:bg-gray-700 hover:scale-105 active:bg-gray-800 active:scale-95"
+                className="flex flex-wrap items-center text-zinc-300 text-sm text-left p-2 rounded transition duration-200 ease-in-out transform hover:bg-gray-700 hover:scale-105 active:bg-gray-800 active:scale-95"
               >
                 <img
                   className="w-6 h-6 rounded-full bg-zinc-100"
@@ -46,7 +46,9 @@ const Subreddits = () => {
                       : defaultSubredditUrl
                   }
                 />
-                <span className="p-2">{subreddit.display_name_prefixed}</span>
+                <span className="p-2 break-words">
+                  {subreddit.display_name_prefixed}
+                </span>
               </button>
             </li>
           ))}

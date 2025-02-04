@@ -57,7 +57,7 @@ const Navbar = () => {
         <MenuIcon className="w-10 h-10 fill-zinc-300" />
       </button>
       {isMenuOpen && (
-        <div className="sm:hidden bg-zinc-900 w-full p-4 mt-4 col-span-2 overflow-y-auto">
+        <div className="sm:hidden bg-zinc-900 w-full p-4 mt-4 col-span-2 overflow-y-auto scrollbar-hide">
           <Sidebar />
           <Subreddits />
         </div>
